@@ -10,11 +10,17 @@ import support.cse131.NotYetImplementedException;
 import support.cse131.Timing;
 import zombies.ZombieSimulationFiles;
 
+/**
+ * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
+ */
 public class ZombieSimulator {
 	private static final String ZOMBIE_TOKEN_VALUE = "Zombie";
 
 	
 
+	/**
+	 * Constructs a ZombieSimulator with an empty list of Entities.
+	 */
 	public ZombieSimulator() {
 		
 			// FIXME
@@ -22,6 +28,10 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * @return the current list of active entities (that is: those which have not
+	 *         been consumed).
+	 */
 	public List<Entity> getEntities() {
 		
 			// FIXME
@@ -29,6 +39,12 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * Reads an entire zombie simulation file from a specified ArgsProcessor, adding
+	 * each Entity to the list of entities.
+	 * 
+	 * @param ap ArgsProcessor to read the complete zombie simulation file format.
+	 */
 	public void readEntities(ArgsProcessor ap) {
 		
 			// FIXME
@@ -36,6 +52,9 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * @return the number of zombies in entities.
+	 */
 	public int getZombieCount() {
 		
 			// FIXME
@@ -43,6 +62,9 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * @return the number of nonzombies in entities.
+	 */
 	public int getNonzombieCount() {
 		
 			// FIXME
@@ -50,6 +72,9 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * Draws a frame of the simulation.
+	 */
 	public void draw() {
 		StdDraw.clear();
 
@@ -61,6 +86,16 @@ public class ZombieSimulator {
 		StdDraw.show(); // commit deferred drawing as a result of enabling double buffering
 	}
 
+	/**
+	 * Updates the entities for the current frame of the simulation given the amount
+	 * of time passed since the previous frame.
+	 * 
+	 * Note: some entities may be consumed and will not remain for future frames of
+	 * the simulation.
+	 * 
+	 * @param deltaTime the amount of time since the previous frame of the
+	 *                  simulation.
+	 */
 	public void update(double deltaTime) {
 		
 			// FIXME
@@ -68,6 +103,11 @@ public class ZombieSimulator {
 		
 	}
 
+	/**
+	 * Runs the zombie simulation.
+	 * 
+	 * @param args arguments from the command line
+	 */
 	public static void main(String[] args) {
 		StdDraw.enableDoubleBuffering(); // reduce unpleasant drawing artifacts, speed things up
 

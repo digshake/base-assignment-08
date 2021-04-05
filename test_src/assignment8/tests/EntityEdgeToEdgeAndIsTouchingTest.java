@@ -53,7 +53,7 @@ public class EntityEdgeToEdgeAndIsTouchingTest {
 
 		double xOther = entity.getX() + xOnUnit * expectedCenterToCenter;
 		double yOther = entity.getY() + yOnUnit * expectedCenterToCenter;
-		double actualCenterToCenter = entity.distanceCenterToCenter(xOther, yOther);
+		double actualCenterToCenter = entity.distanceCenterToPoint(xOther, yOther);
 		assertEquals(expectedCenterToCenter, actualCenterToCenter,
 				UnitTestUtils.reasonableRelativeDelta(radiusOther));
 		double actualEdgeToEdge = entity.distanceEdgeToEdge(xOther, yOther, radiusOther);

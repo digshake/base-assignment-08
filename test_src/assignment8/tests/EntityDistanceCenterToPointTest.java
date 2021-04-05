@@ -17,14 +17,14 @@ import test.cse131.UnitTestUtils;
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 @RunWith(Parameterized.class)
-public class EntityDistanceCenterToCenterTest {
+public class EntityDistanceCenterToPointTest {
 	private final double expected;
 	private final double x;
 	private final double y;
 	private final double xOther;
 	private final double yOther;
 
-	public EntityDistanceCenterToCenterTest(double expected, double x, double y, double xOther, double yOther) {
+	public EntityDistanceCenterToPointTest(double expected, double x, double y, double xOther, double yOther) {
 		super();
 		this.expected = expected;
 		this.x = x;
@@ -38,7 +38,7 @@ public class EntityDistanceCenterToCenterTest {
 		assertEquals(isZombie, entity.isZombie());
 		assertEquals(x, entity.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(y, entity.getY(), UnitTestUtils.zeroDelta());
-		double actual = entity.distanceCenterToCenter(xOther, yOther);
+		double actual = entity.distanceCenterToPoint(xOther, yOther);
 		assertEquals(expected, actual, UnitTestUtils.reasonableRelativeDelta(expected));
 	}
 
