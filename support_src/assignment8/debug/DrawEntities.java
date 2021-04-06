@@ -29,7 +29,7 @@ public class DrawEntities {
 		boolean[] areZombies = { false, true };
 		double[][] positions = { { 0.1, 0.2 }, { 0.4, 0.8 } };
 		String message = String.format(
-				"<html>Does the screen show both a zombie at (%.2f, %.2f) and a nonzombie at (%.2f, %.2f)?<br/>Note: we have added crosshairs at these locations.</html>",
+				"<html>Does the screen show both a nonzombie at (%.2f, %.2f) and a zombie at (%.2f, %.2f)?<br/>Note: we have added crosshairs at these locations.</html>",
 				positions[0][0], positions[0][1], positions[1][0], positions[1][1]);
 		return new DrawEntitiesCase(areZombies, positions, message);
 	}
