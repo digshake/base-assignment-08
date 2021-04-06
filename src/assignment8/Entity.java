@@ -155,7 +155,7 @@ public class Entity {
 		double yAmount = amount * Math.sin(angle);
 		
 			throw new RuntimeException(
-					"\nRemove this RuntimeException and uncomment the lines below.\nIf you named your x and y coordinate instance variables something other than x and y, update the lines to use those instance variables.");
+					"\n\nIf necessary, watch this video on how to fix this method:\n\n\thttps://www.youtube.com/watch?v=5mkiddBiTxM\n\nRemove this RuntimeException and uncomment the lines below.\nIf you named your x and y coordinate instance variables something other than x and y, update the lines to use those instance variables.");
 			// this.x += xAmount;
 			// this.y += yAmount;
 		
