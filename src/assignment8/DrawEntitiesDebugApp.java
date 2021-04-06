@@ -2,6 +2,7 @@ package assignment8;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import assignment8.debug.DrawEntities;
@@ -28,6 +29,7 @@ public class DrawEntitiesDebugApp {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
+			Object[] options = { "Continue", "Exit" };
 			for (DrawEntitiesCase drawEntitiesCase : DrawEntities.getCases()) {
 				StdDraw.clear();
 				List<Entity> entities = drawEntitiesCase.getEntities();
@@ -36,16 +38,22 @@ public class DrawEntitiesDebugApp {
 				}
 				drawBoundingCirclesAndCrosshairs(entities);
 				StdDraw.show();
-				DialogBoxes.askUser(drawEntitiesCase.getText(), "via class Entity draw()");
+				if (!DialogBoxes.askUser(drawEntitiesCase.getText(), "via class Entity draw()",
+						JOptionPane.QUESTION_MESSAGE, options)) {
+					System.exit(0);
+				}
 			}
-			if (DialogBoxes.askUser("Continue to ZombieSimulator?")) {
+			if (DialogBoxes.askUser("Continue to ZombieSimulator?", "", JOptionPane.QUESTION_MESSAGE, options)) {
 				for (DrawEntitiesCase drawEntitiesCase : DrawEntities.getCases()) {
 					StdDraw.clear();
 					ZombieSimulator zombieSimulator = drawEntitiesCase.createZombieSimulator();
 					zombieSimulator.draw();
 					drawBoundingCirclesAndCrosshairs(zombieSimulator.getEntities());
 					StdDraw.show();
-					DialogBoxes.askUser(drawEntitiesCase.getText(), "via class ZombieSimulator draw()");
+					if (!DialogBoxes.askUser(drawEntitiesCase.getText(), "via class ZombieSimulator draw()",
+							JOptionPane.QUESTION_MESSAGE, options)) {
+						break;
+					}
 				}
 			}
 			System.exit(0);
