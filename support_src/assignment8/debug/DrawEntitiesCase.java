@@ -1,12 +1,18 @@
 package assignment8.debug;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import assignment8.Entity;
 import assignment8.ZombieSimulator;
-import support.cse131.ArgsProcessor;
 
 /**
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
@@ -42,9 +48,20 @@ public class DrawEntitiesCase {
 			args.add(Double.toString(positions[i][0]));
 			args.add(Double.toString(positions[i][1]));
 		}
-		ArgsProcessor ap = new ArgsProcessor(args.toArray(new String[args.size()]));
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		 for (String line : args) {
+			 try {
+		   baos.write(line.getBytes());
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 }
+		 }
+
+		 byte[] bytes = baos.toByteArray();
+		Scanner in = new Scanner(new ByteArrayInputStream(bytes));
 		ZombieSimulator zombieSimulator = new ZombieSimulator();
-		zombieSimulator.readEntities(ap);
+		zombieSimulator.readEntities(in);
 		return zombieSimulator;
 	}
 }

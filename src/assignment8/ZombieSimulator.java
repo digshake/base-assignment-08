@@ -1,14 +1,17 @@
 package assignment8;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
+
+import javax.swing.JFileChooser;
 
 import edu.princeton.cs.introcs.StdDraw;
-import support.cse131.ArgsProcessor;
 import support.cse131.NotYetImplementedException;
 import support.cse131.Timing;
-import zombies.ZombieSimulationFiles;
 
 /**
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
@@ -45,7 +48,7 @@ public class ZombieSimulator {
 	 * 
 	 * @param ap ArgsProcessor to read the complete zombie simulation file format.
 	 */
-	public void readEntities(ArgsProcessor ap) {
+	public void readEntities(Scanner in) {
 		
 			// FIXME
 			throw new NotYetImplementedException();
@@ -107,16 +110,19 @@ public class ZombieSimulator {
 	 * Runs the zombie simulation.
 	 * 
 	 * @param args arguments from the command line
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		StdDraw.enableDoubleBuffering(); // reduce unpleasant drawing artifacts, speed things up
 
-		ArgsProcessor ap = ZombieSimulationFiles.createArgsProcessorFromFile(args);
+		JFileChooser chooser = new JFileChooser("zombieSims");
+		chooser.showOpenDialog(null);
+		File f = new File(chooser.getSelectedFile().getPath());
+		Scanner in = new Scanner(f); //making Scanner with a File
+		
 		ZombieSimulator zombieSimulator = new ZombieSimulator();
-		zombieSimulator.readEntities(ap);
-		zombieSimulator.draw();
-		StdDraw.pause(500);
-
+		zombieSimulator.readEntities(in);
+		
 		double prevTime = Timing.getCurrentTimeInSeconds();
 		while (zombieSimulator.getNonzombieCount() > 0) {
 			double currTime = Timing.getCurrentTimeInSeconds();

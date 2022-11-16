@@ -1,20 +1,29 @@
 package assignment8.tests;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Scanner;
 
 import assignment8.Entity;
 import assignment8.ZombieSimulator;
-import support.cse131.ArgsProcessor;
-import zombies.ZombieSimulationFiles;
 
 /**
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class ZombieTestUtils {
 	public static ZombieSimulator readZombieSimulator(String filename) {
-		ArgsProcessor ap = ZombieSimulationFiles.createArgsProcessorFromFile(new String[] { filename });
+		Scanner ap;
 		ZombieSimulator zombieSimulator = new ZombieSimulator();
-		zombieSimulator.readEntities(ap);
+
+		try {
+			ap = new Scanner(new File("zombieSims/" + filename));
+			zombieSimulator.readEntities(ap);
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return zombieSimulator;
 	}
 
