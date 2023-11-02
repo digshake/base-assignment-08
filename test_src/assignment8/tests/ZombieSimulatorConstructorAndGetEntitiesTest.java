@@ -16,9 +16,9 @@ import assignment8.ZombieSimulator;
 public class ZombieSimulatorConstructorAndGetEntitiesTest {
 	@Test
 	public void test() {
-		ZombieSimulator zombieSimulator = new ZombieSimulator();
-		List<Entity> entities = zombieSimulator.getEntities();
+		ZombieSimulator zombieSimulator = new ZombieSimulator(0);
+		Entity[] entities = zombieSimulator.getEntities();
 		assertNotNull(entities);
-		assertEquals(0, entities.size());
+		assertEquals(0, entities.length);
 	}
 }

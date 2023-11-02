@@ -19,8 +19,8 @@ public class DrawEntitiesDebugApp {
 		StdDraw.line(x, y - halfLength, x, y + halfLength);
 		StdDraw.line(x - halfLength, y, x + halfLength, y);
 	}
-
-	private static void drawBoundingCirclesAndCrosshairs(List<Entity> entities) {
+ 
+	private static void drawBoundingCirclesAndCrosshairs(Entity[] entities) {
 		StdDraw.setPenColor(0, 109, 219);
 		for (Entity entity : entities) {
 			StdDraw.circle(entity.getX(), entity.getY(), entity.getRadius());
@@ -33,7 +33,7 @@ public class DrawEntitiesDebugApp {
 			Object[] options = { "Continue", "Exit" };
 			for (DrawEntitiesCase drawEntitiesCase : DrawEntities.getCases()) {
 				StdDraw.clear();
-				List<Entity> entities = drawEntitiesCase.getEntities();
+				Entity[] entities = drawEntitiesCase.getEntities();
 				for (Entity entity : entities) {
 					entity.draw();
 				}

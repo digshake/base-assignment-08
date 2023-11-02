@@ -3,7 +3,7 @@ package assignment8.debug;
 import java.util.Arrays;
 import java.util.List;
 
-/**
+/** 
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
 public class DrawEntities {

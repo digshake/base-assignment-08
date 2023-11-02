@@ -22,10 +22,10 @@ public class ZombieSimulatorReadTest {
 	 */
 	@Test
 	public void testRead1Nonzombie() {
-		List<Entity> entities = ZombieTestUtils.readEntities("1_nonzombie.sim");
+		Entity[] entities = ZombieTestUtils.readEntities("1_nonzombie.sim");
 		assertNotNull(entities);
-		assertEquals(1, entities.size());
-		Entity entity0 = entities.get(0);
+		assertEquals(1, entities.length);
+		Entity entity0 = entities[0];
 		assertNotNull(entity0);
 		assertFalse(entity0.isZombie());
 		assertEquals(0.1, entity0.getX(), UnitTestUtils.zeroDelta());
@@ -37,10 +37,10 @@ public class ZombieSimulatorReadTest {
 	 */
 	@Test
 	public void testRead1Zombie() {
-		List<Entity> entities = ZombieTestUtils.readEntities("1_zombie.sim");
+		Entity[] entities = ZombieTestUtils.readEntities("1_zombie.sim");
 		assertNotNull(entities);
-		assertEquals(1, entities.size());
-		Entity entity0 = entities.get(0);
+		assertEquals(1, entities.length);
+		Entity entity0 = entities[0];
 		assertNotNull(entity0);
 		assertTrue(entity0.isZombie());
 		assertEquals(0.3, entity0.getX(), UnitTestUtils.zeroDelta());
@@ -52,35 +52,35 @@ public class ZombieSimulatorReadTest {
 	 */
 	@Test
 	public void testRead5Nonzombies() {
-		List<Entity> entities = ZombieTestUtils.readEntities("5_nonzombies.sim");
+		Entity[] entities = ZombieTestUtils.readEntities("5_nonzombies.sim");
 		assertNotNull(entities);
-		assertEquals(5, entities.size());
+		assertEquals(5, entities.length);
 
-		Entity entity0 = entities.get(0);
+		Entity entity0 = entities[0];
 		assertNotNull(entity0);
 		assertFalse(entity0.isZombie());
 		assertEquals(0.9, entity0.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.1, entity0.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity1 = entities.get(1);
+		Entity entity1 = entities[1];
 		assertNotNull(entity1);
 		assertFalse(entity1.isZombie());
 		assertEquals(0.8, entity1.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.2, entity1.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity2 = entities.get(2);
+		Entity entity2 = entities[2];
 		assertNotNull(entity2);
 		assertFalse(entity2.isZombie());
 		assertEquals(0.7, entity2.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.3, entity2.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity3 = entities.get(3);
+		Entity entity3 = entities[3];
 		assertNotNull(entity3);
 		assertFalse(entity3.isZombie());
 		assertEquals(0.6, entity3.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.4, entity3.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity4 = entities.get(4);
+		Entity entity4 = entities[4];
 		assertNotNull(entity4);
 		assertFalse(entity4.isZombie());
 		assertEquals(0.5, entity4.getX(), UnitTestUtils.zeroDelta());
@@ -92,36 +92,36 @@ public class ZombieSimulatorReadTest {
 	 */
 	@Test
 	public void testRead5Zombies() {
-		List<Entity> entities = ZombieTestUtils.readEntities("5_zombies.sim");
+		Entity[] entities = ZombieTestUtils.readEntities("5_zombies.sim");
 
 		assertNotNull(entities);
-		assertEquals(5, entities.size());
+		assertEquals(5, entities.length);
 
-		Entity entity0 = entities.get(0);
+		Entity entity0 = entities[0];
 		assertNotNull(entity0);
 		assertTrue(entity0.isZombie());
 		assertEquals(0.1, entity0.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.9, entity0.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity1 = entities.get(1);
+		Entity entity1 = entities[1];
 		assertNotNull(entity1);
 		assertTrue(entity1.isZombie());
 		assertEquals(0.2, entity1.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.8, entity1.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity2 = entities.get(2);
+		Entity entity2 = entities[2];
 		assertNotNull(entity2);
 		assertTrue(entity2.isZombie());
 		assertEquals(0.3, entity2.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.7, entity2.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity3 = entities.get(3);
+		Entity entity3 = entities[3];
 		assertNotNull(entity3);
 		assertTrue(entity3.isZombie());
 		assertEquals(0.4, entity3.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.6, entity3.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity4 = entities.get(4);
+		Entity entity4 = entities[4];
 		assertNotNull(entity4);
 		assertTrue(entity4.isZombie());
 		assertEquals(0.5, entity4.getX(), UnitTestUtils.zeroDelta());
@@ -133,24 +133,24 @@ public class ZombieSimulatorReadTest {
 	 */
 	@Test
 	public void testReadCse131vsZombies() {
-		List<Entity> entities = ZombieTestUtils.readEntities("cse131_vs_zombies.sim");
+		Entity[] entities = ZombieTestUtils.readEntities("cse131_vs_zombies.sim");
 
 		assertNotNull(entities);
-		assertEquals(759, entities.size());
+		assertEquals(759, entities.length);
 
-		Entity entity0 = entities.get(0);
+		Entity entity0 = entities[0];
 		assertNotNull(entity0);
 		assertTrue(entity0.isZombie());
 		assertEquals(0.5747243414406034, entity0.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.35182316835133776, entity0.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity1 = entities.get(1);
+		Entity entity1 = entities[1];
 		assertNotNull(entity1);
 		assertFalse(entity1.isZombie());
 		assertEquals(0.4719683868189237, entity1.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(0.8105152839528421, entity1.getY(), UnitTestUtils.zeroDelta());
 
-		Entity entity758 = entities.get(758);
+		Entity entity758 = entities[758];
 		assertNotNull(entity758);
 		assertTrue(entity758.isZombie());
 		assertEquals(0.5001967679478432, entity758.getX(), UnitTestUtils.zeroDelta());

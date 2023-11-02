@@ -16,20 +16,21 @@ import support.cse131.Timing;
 public class ZombieSimulator {
 	private static final String ZOMBIE_TOKEN_VALUE = "Zombie";
 
-	private Entity[] community;
 
 	/**
 	 * Constructs a ZombieSimulator with an empty array of Entities.
 	 */
 	public ZombieSimulator(int n) {
-		this.community = new Entity[n];
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
 	 * @return the current array of entities 
 	 */
 	public Entity[] getEntities() {
-		return this.community;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/** 
@@ -42,38 +43,24 @@ public class ZombieSimulator {
 	 * @param in Scanner to read the complete zombie simulation file format.
 	 */
 	public void readEntities(Scanner in) {
-		for(int i = 0; i < this.community.length; i++){
-			String token = in.next();
-			double x = in.nextDouble();
-			double y = in.nextDouble();
-			Entity e;
-			if(token.equals(ZOMBIE_TOKEN_VALUE)){
-				e = new Zombie(x, y);
-			}
-			else {
-				e = new Nonzombie(x, y);
-			}
-			community[i] = e;
-		}
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
 	 * @return the number of zombies in entities.
 	 */
 	public int getZombieCount() {
-		int count = 0;
-		for(Entity e : community) {
-			if(e != null)
-				count = e.isZombie() ? count + 1 : count;
-		}
-		return count;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
 	 * @return the number of nonzombies in entities.
 	 */
 	public int getNonzombieCount() {
-		return this.community.length - getZombieCount();
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -105,14 +92,8 @@ public class ZombieSimulator {
 	 *                  simulation.
 	 */
 	public void update(double deltaTime) {
-		Entity[] newArr = new Entity[community.length];
-		int i = 0;
-		for(Entity e : this.community) {
-			if(e != null)
-				newArr[i] = e.update(community, deltaTime);
-			i++;
-		}
-		this.community = newArr;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**

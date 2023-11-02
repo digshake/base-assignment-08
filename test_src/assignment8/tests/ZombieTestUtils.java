@@ -14,10 +14,11 @@ import assignment8.ZombieSimulator;
 public class ZombieTestUtils {
 	public static ZombieSimulator readZombieSimulator(String filename) {
 		Scanner ap;
-		ZombieSimulator zombieSimulator = new ZombieSimulator();
-
+		
+		ZombieSimulator zombieSimulator = null;
 		try {
 			ap = new Scanner(new File("zombieSims/" + filename));
+			zombieSimulator = new ZombieSimulator(ap.nextInt());
 			zombieSimulator.readEntities(ap);
 
 		} catch (FileNotFoundException e) {
@@ -27,7 +28,7 @@ public class ZombieTestUtils {
 		return zombieSimulator;
 	}
 
-	public static List<Entity> readEntities(String filename) {
+	public static Entity[] readEntities(String filename) {
 		return readZombieSimulator(filename).getEntities();
 	}
 }

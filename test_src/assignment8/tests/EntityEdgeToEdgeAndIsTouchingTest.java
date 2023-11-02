@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import assignment8.Entity;
+import assignment8.Nonzombie;
+import assignment8.Zombie;
 import test.cse131.UnitTestUtils;
 
 /**
@@ -38,7 +40,13 @@ public class EntityEdgeToEdgeAndIsTouchingTest {
 	}
 
 	private Entity createEntity(boolean isZombie) {
-		Entity entity = new Entity(isZombie, x, y);
+		Entity entity;
+		if(isZombie) {
+			entity = new Zombie(x, y);
+		}
+		else {
+			entity = new Nonzombie(x, y);
+		}
 		assertEquals(isZombie, entity.isZombie());
 		assertEquals(x, entity.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(y, entity.getY(), UnitTestUtils.zeroDelta());

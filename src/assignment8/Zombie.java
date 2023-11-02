@@ -1,3 +1,7 @@
+package assignment8;
+
+import edu.princeton.cs.introcs.StdDraw;
+
 public class Zombie extends Entity {
     public Zombie(double x, double y){
         super(x, y);
@@ -7,32 +11,28 @@ public class Zombie extends Entity {
     }
 
     public double getRadius(){
-        return this.radius;
+        return super.radius;
     }
 
     public void eatNonzombie(){
-        if(this.radius < 0.2) {
-            this.radius *= 1.2;
+        if(super.radius < 0.2) {
+            super.radius *= 1.2;
         }
     }
-
+ 
     public void draw() {
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledCircle(super.getX(), super.getY(), this.radius);
+        StdDraw.filledCircle(super.getX(), super.getY(), super.radius);
     }
 
-    public void update(Entity[] entities, double deltaTime) {
-        Entity e = this.findClosestNonzombie(entities);
+//    @Override
+    public Entity update(Entity[] entities, double deltaTime) {
+        Nonzombie e = this.findClosestNonzombie(entities);
         if(e != null){
             this.moveToward(e, deltaTime);
-            if(this.isTouching(e)) {
-                if(Math.random() > 0.2){
-                    e.consume();
-                }
-                else {
-                    this.eatNonzombie();
-                }
-            }
+        	super.update(entities, deltaTime);
+            return this;
         }
+        return null;
     }
 }

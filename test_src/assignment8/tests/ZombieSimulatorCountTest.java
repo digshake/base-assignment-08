@@ -33,9 +33,9 @@ public class ZombieSimulatorCountTest {
 	public void test() {
 		ZombieSimulator zombieSimulator = ZombieTestUtils.readZombieSimulator(filename);
 		assertNotNull(zombieSimulator);
-		List<Entity> entities = zombieSimulator.getEntities();
+		Entity[] entities = zombieSimulator.getEntities();
 		assertNotNull(entities);
-		assertEquals(expectedZombieCount + expectedNonzombieCount, entities.size());
+		assertEquals(expectedZombieCount + expectedNonzombieCount, entities.length);
 
 		assertEquals(expectedZombieCount, zombieSimulator.getZombieCount());
 		assertEquals(expectedNonzombieCount, zombieSimulator.getNonzombieCount());

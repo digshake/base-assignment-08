@@ -10,8 +10,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import assignment8.Entity;
+import assignment8.Nonzombie;
+import assignment8.Zombie;
 import assignment8.ZombieSimulator;
 
 /**
@@ -32,35 +35,27 @@ public class DrawEntitiesCase {
 		return text;
 	}
 
-	public List<Entity> getEntities() {
-		List<Entity> entities = new ArrayList<>(areZombies.length);
+	public Entity[] getEntities() {
+		Entity[] entities = new Entity[areZombies.length];
 		for (int i = 0; i < areZombies.length; ++i) {
-			entities.add(new Entity(areZombies[i], positions[i][0], positions[i][1]));
+			entities[i] = areZombies[i] ? new Zombie(positions[i][0], positions[i][1]) : new Nonzombie(positions[i][0], positions[i][1]);
 		}
 		return entities;
-	}
+	} 
 
 	public ZombieSimulator createZombieSimulator() {
-		List<String> args = new LinkedList<>();
-		args.add(Integer.toString(areZombies.length));
-		for (int i = 0; i < areZombies.length; ++i) {
-			args.add(areZombies[i] ? "Zombie" : "Nonzombie");
-			args.add(Double.toString(positions[i][0]));
-			args.add(Double.toString(positions[i][1]));
-		}
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		String args = "";
+		args += areZombies.length + " " ;
+		for (int i = 0; i < areZombies.length; i++) {
+			args += areZombies[i] ? "Zombie" : "Nonzombie";
+			args += " ";
+			args += positions[i][0] + " ";
+			args += positions[i][1] + " ";
+		} 
 
-		 for (String line : args) {
-			 try {
-		   baos.write(line.getBytes());
-			 } catch (Exception e) {
-				 e.printStackTrace();
-			 }
-		 }
-
-		 byte[] bytes = baos.toByteArray();
-		Scanner in = new Scanner(new ByteArrayInputStream(bytes));
-		ZombieSimulator zombieSimulator = new ZombieSimulator();
+	    Scanner in = new Scanner(args);
+		
+		ZombieSimulator zombieSimulator = new ZombieSimulator(in.nextInt());
 		zombieSimulator.readEntities(in);
 		return zombieSimulator;
 	}

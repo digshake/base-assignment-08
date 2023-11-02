@@ -9,6 +9,8 @@ import static org.hamcrest.Matchers.greaterThan;
 import org.junit.Test;
 
 import assignment8.Entity;
+import assignment8.Nonzombie;
+import assignment8.Zombie;
 import test.cse131.UnitTestUtils;
 
 /**
@@ -19,7 +21,7 @@ public class EntityRadiusTest {
 	public void testZombie() {
 		double x = 0.3;
 		double y = 0.4;
-		Entity zombie = new Entity(true, x, y);
+		Zombie zombie = new Zombie(x, y);
 		assertTrue(zombie.isZombie());
 		assertEquals(x, zombie.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(y, zombie.getY(), UnitTestUtils.zeroDelta());
@@ -30,7 +32,7 @@ public class EntityRadiusTest {
 	public void testNonzombie() {
 		double x = 0.5;
 		double y = 0.7;
-		Entity nonzombie = new Entity(false, x, y);
+		Nonzombie nonzombie = new Nonzombie(x, y);
 		assertFalse(nonzombie.isZombie());
 		assertEquals(x, nonzombie.getX(), UnitTestUtils.zeroDelta());
 		assertEquals(y, nonzombie.getY(), UnitTestUtils.zeroDelta());
