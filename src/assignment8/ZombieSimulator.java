@@ -19,60 +19,64 @@ import support.cse131.Timing;
 public class ZombieSimulator {
 	private static final String ZOMBIE_TOKEN_VALUE = "Zombie";
 
-	
+	private Entity[] community;
 
 	/**
 	 * Constructs a ZombieSimulator with an empty list of Entities.
 	 */
-	public ZombieSimulator() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+	public ZombieSimulator(int n) {
+		this.community = new Entity[n];
 	}
 
 	/**
 	 * @return the current list of active entities (that is: those which have not
 	 *         been consumed).
 	 */
-	public List<Entity> getEntities() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+	public Entity[] getEntities() {
+		return this.community;
 	}
 
 	/**
 	 * Reads an entire zombie simulation file from a specified ArgsProcessor, adding
 	 * each Entity to the list of entities.
-	 * 
-	 * @param ap ArgsProcessor to read the complete zombie simulation file format.
+	 *
+	 * Assume that N (the integer indicating how many entities are in the simulation) has already been read in
+	 * and passed into the constructor.
+	 *
+	 * @param in Scanner to read the complete zombie simulation file format.
 	 */
 	public void readEntities(Scanner in) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		for(int i = 0; i < this.community.length; i++){
+			String token = in.next();
+			double x = in.nextDouble();
+			double y = in.nextDouble();
+			Entity e;
+			if(token.equals(ZOMBIE_TOKEN_VALUE)){
+				e = new Zombie(x, y);
+			}
+			else {
+				e = new Nonzombie(x, y);
+			}
+			community[i] = e;
+		}
 	}
 
 	/**
 	 * @return the number of zombies in entities.
 	 */
 	public int getZombieCount() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		int count = 0;
+		for(Entity e : community) {
+			count = e.isZombie() ? count + 1 : count;
+		}
+		return count;
 	}
 
 	/**
 	 * @return the number of nonzombies in entities.
 	 */
 	public int getNonzombieCount() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return this.community.length - getZombieCount();
 	}
 
 	/**
@@ -83,7 +87,9 @@ public class ZombieSimulator {
 
 		// NOTE: feel free to edit this code to support additional features
 		for (Entity entity : getEntities()) {
-			entity.draw();
+			if(entity.isAlive()){
+				entity.draw();
+			}
 		}
 
 		StdDraw.show(); // commit deferred drawing as a result of enabling double buffering
@@ -100,10 +106,9 @@ public class ZombieSimulator {
 	 *                  simulation.
 	 */
 	public void update(double deltaTime) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		for(Entity e : this.community) {
+			e.update(community, deltaTime);
+		}
 	}
 
 	/**

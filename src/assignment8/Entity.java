@@ -1,14 +1,13 @@
 package assignment8;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.princeton.cs.introcs.StdDraw;
 import support.cse131.NotYetImplementedException;
 
 public class Entity {
-	
+	protected double x, y, radius;
+	private boolean isAlive;
 
 	/**
 	 * @param isZombie the undead state of this Entity.
@@ -16,64 +15,36 @@ public class Entity {
 	 * @param x        the x-coordinate of this Entity's center.
 	 * @param y        the y-coordinate of this Entity's center.
 	 */
-	public Entity(boolean isZombie, double x, double y) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+	public Entity(double x, double y) {
+		this.x = x;
+		this.y = y;
+		this.radius = 0.08;
+		this.isAlive = true;
 	}
-
-	/**
-	 * @return true if zombie, false otherwise
-	 */
-	public boolean isZombie() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
-	}
-
 	/**
 	 * @return the center x-coordinate
 	 */
 	public double getX() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return this.x;
 	}
 
 	/**
 	 * @return the center y-coordinate
 	 */
 	public double getY() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return this.y;
 	}
 
-	/**
-	 * @return the radius
-	 */
 	public double getRadius() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return this.radius;
+	}
+	public boolean isAlive() {
+		return this.isAlive;
+	}
+	public void setAlive(double newAliveStatus){
+		this.isAlive = newAliveStatus;
 	}
 
-	/**
-	 * Draw this Entity.
-	 */
-	public void draw() {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
-	}
-
-	
 
 	/**
 	 * @param xOther x-coordinate of the other point.
@@ -81,10 +52,7 @@ public class Entity {
 	 * @return distance between this Entity's center and the specified other point.
 	 */
 	public double distanceCenterToPoint(double xOther, double yOther) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return Math.sqrt(Math.pow(this.x - xOther, 2) + Math.pow(this.y - yOther, 2));
 	}
 
 	/**
@@ -104,10 +72,7 @@ public class Entity {
 	 *         Entity's edge.
 	 */
 	public double distanceEdgeToEdge(double xOther, double yOther, double radiusOther) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return distanceCenterToPoint(xOther, yOther) - radiusOther;
 	}
 
 	/**
@@ -127,10 +92,7 @@ public class Entity {
 	 *         circle of the specified other Entity, false otherwise.
 	 */
 	public boolean isTouching(double xOther, double yOther, double radiusOther) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		return distanceEdgeToEdge(xOther, yOther, radiusOther) <= 0;
 	}
 
 	/**
@@ -175,10 +137,7 @@ public class Entity {
 	 * @param amount the amount to move away from the point.
 	 */
 	public void moveAwayFrom(double xOther, double yOther, double amount) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
+		moveToward(xOther, yOther, -amount);
 	}
 
 	/**
@@ -190,12 +149,12 @@ public class Entity {
 	}
 
 	/**
-	 * @param entities          this list of entities to search.
+	 * @param entities          this array of entities to search.
 	 * @param includeZombies    whether to include zombies in this search or not.
 	 * @param includeNonzombies whether to include nonzombies in this search or not.
 	 * @return the closest Entity to this Entity in entities (which is not this).
 	 */
-	private Entity findClosest(List<Entity> entities, boolean includeZombies, boolean includeNonzombies) {
+	private Entity findClosest(Entity[] entities, boolean includeZombies, boolean includeNonzombies) {
 		Entity closest = null;
 		double closestDist = Double.MAX_VALUE;
 		for (Entity other : entities) {
@@ -216,47 +175,27 @@ public class Entity {
 	}
 
 	/**
-	 * @param entities this list of entities to search.
+	 * @param entities this array of entities to search.
 	 * @return the closest nonzombie to this Entity in entities (which is not this).
 	 */
-	public Entity findClosestNonzombie(List<Entity> entities) {
+	public Entity findClosestNonzombie(Entity[] entities) {
 		return findClosest(entities, false, true);
 	}
 
 	/**
-	 * @param entities this list of entities to search.
+	 * @param entities this array of entities to search.
 	 * @return the closest zombie to this Entity in entities (which is not this).
 	 */
-	public Entity findClosestZombie(List<Entity> entities) {
+	public Entity findClosestZombie(Entity[] entities) {
 		return findClosest(entities, true, false);
 	}
 
 	/**
-	 * @param entities this list of entities to search.
+	 * @param entities this array of entities to search.
 	 * @return the closest Entity to this Entity in entities (which is not this).
 	 */
-	public Entity findClosestEntity(List<Entity> entities) {
+	public Entity findClosestEntity(Entity[] entities) {
 		return findClosest(entities, true, true);
 	}
 
-	
-
-	/**
-	 * Updates the appropriate state (instance variables) of this Entity for the
-	 * current frame of the simulation.
-	 * 
-	 * @param entities  list of remaining entities in the simulation. It is likely
-	 *                  that this Entity will be one of the entities in the list.
-	 *                  Care should be taken to not overreact to oneself.
-	 * @param deltaTime the change in time since the previous frame
-	 * 
-	 * @return true if this Entity remains in existence past the current frame,
-	 *         false if consumed
-	 */
-	public boolean update(List<Entity> entities, double deltaTime) {
-		
-			// FIXME
-			throw new NotYetImplementedException();
-		
-	}
 }
