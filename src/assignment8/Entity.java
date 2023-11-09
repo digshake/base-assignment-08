@@ -6,6 +6,7 @@ import edu.princeton.cs.introcs.StdDraw;
 import support.cse131.NotYetImplementedException;
 
 public class Entity {
+	private static final double MOVE_DISTANCE = 0.01;
 	protected double x, y, radius;
 	private boolean isConsumed;
 
@@ -19,7 +20,7 @@ public class Entity {
 		this.x = x;
 		this.y = y;
 		this.radius = 0.008;
-		this.isConsumed = true;
+		this.isConsumed = false;
 	}
 	/**
 	 * @return the center x-coordinate
@@ -39,10 +40,10 @@ public class Entity {
 		return this.radius;
 	}
 	public boolean isAlive() {
-		return this.isConsumed;
+		return !this.isConsumed;
 	}
 	public void wasConsumed(){
-		this.isConsumed = false;
+		this.isConsumed = true;
 	}
 	
 	public boolean isZombie() {
@@ -120,8 +121,6 @@ public class Entity {
 		double xAmount = amount * Math.cos(angle);
 		double yAmount = amount * Math.sin(angle);
 		
-//			throw new RuntimeException(
-//					"\n\nIf necessary, watch this video on how to fix this method:\n\n\thttps://www.youtube.com/watch?v=5mkiddBiTxM\n\nRemove this RuntimeException and uncomment the lines below.\nIf you named your x and y coordinate instance variables something other than x and y, update the lines to use those instance variables.");
 			 this.x += xAmount;
 			 this.y += yAmount;
 		
@@ -131,8 +130,8 @@ public class Entity {
 	 * @param other  the other Entity
 	 * @param amount the amount to move toward the other Entity.
 	 */
-	public void moveToward(Entity other, double amount) {
-		moveToward(other.getX(), other.getY(), amount);
+	public void moveToward(Entity other) {
+		moveToward(other.getX(), other.getY(), MOVE_DISTANCE);
 	}
 
 	/**
@@ -140,16 +139,16 @@ public class Entity {
 	 * @param yOther y-coordinate of the other point.
 	 * @param amount the amount to move away from the point.
 	 */
-	public void moveAwayFrom(double xOther, double yOther, double amount) {
-		moveToward(xOther, yOther, -amount);
+	public void moveAwayFrom(double xOther, double yOther) {
+		moveToward(xOther, yOther, -MOVE_DISTANCE);
 	}
 
 	/**
 	 * @param other  the other Entity
 	 * @param amount the amount to move away from the other Entity.
 	 */
-	public void moveAwayFrom(Entity other, double amount) {
-		moveAwayFrom(other.getX(), other.getY(), amount);
+	public void moveAwayFrom(Entity other) {
+		moveAwayFrom(other.getX(), other.getY());
 	}
 
 	/**
@@ -184,7 +183,10 @@ public class Entity {
 	 */
 	public Nonzombie findClosestNonzombie(Entity[] entities) {
 		Entity e = findClosest(entities, false, true);
-		return new Nonzombie(e.x, e.y);
+		if(e != null) {
+			return (Nonzombie)e;
+		}
+		return null;
 	}
 
 	/**
@@ -196,7 +198,7 @@ public class Entity {
 		if(e == null) {
 			return null;
 		}
-		return new Zombie(e.x, e.y);
+		return (Zombie)e;
 	}
 
 	/**
@@ -206,10 +208,17 @@ public class Entity {
 	public Entity findClosestEntity(Entity[] entities) {
 		return findClosest(entities, true, true);
 	}
+	
 	public void draw() {
+		StdDraw.setPenColor(Color.orange);
+		StdDraw.point(x, y);
 	}
 	
-	public Entity update(Entity[] e, double deltaTime) {
+	public Entity update(Entity[] e) {
+		return this;
+	}
+	
+	public void boundsCheck() {
 		if(this.x > 1) {
 			this.x = 1;
 		}
@@ -222,7 +231,6 @@ public class Entity {
 		if(this.y < 0) {
 			this.y = 0;
 		}
-		return null;
 	}
 
 }

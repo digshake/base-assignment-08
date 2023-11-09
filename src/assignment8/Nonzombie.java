@@ -11,20 +11,27 @@ public class Nonzombie extends Entity {
         super.wasConsumed();
     }
  
+    @Override
     public void draw() {
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.filledCircle(x, y, super.getRadius());
+    	if(isAlive()) {
+    		StdDraw.setPenColor(StdDraw.BLACK);
+    	} else {
+    		StdDraw.setPenColor(StdDraw.PINK);
+    	}
+    	StdDraw.filledCircle(x, y, super.getRadius());
     }
+    
     public Zombie convert() {
     	System.out.println("CONVERTING");
     	return new Zombie(super.getX(), super.getY());
     }
-
-    public Entity update(Entity[] entities, double deltaTime) {
+    
+    @Override
+    public Entity update(Entity[] entities) {
         Zombie e = findClosestZombie(entities);
-        if(e != null){
-            this.moveAwayFrom(e, deltaTime);
-            super.update(entities, deltaTime);
+        if(e != null && this.isAlive()){
+            this.moveAwayFrom(e);
+            this.boundsCheck();
             if(this.isTouching(e)) {
             	System.out.println("TOUCHING");
                 if(Math.random() > 0.2){
@@ -32,14 +39,17 @@ public class Nonzombie extends Entity {
                     return newGuy;
                 }
                 else {
-//                    e.eatNonzombie();
                     this.consume();
+                    e.eatNonzombie();
                 }
             }
-            return this;
         }
-        return null;
+        return this;
     }
     
+    @Override
+    public boolean isZombie() {
+    	return false;
+    }
     
 }

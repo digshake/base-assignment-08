@@ -6,33 +6,35 @@ public class Zombie extends Entity {
     public Zombie(double x, double y){
         super(x, y);
     }
+    
+    @Override
     public boolean isZombie(){
         return true;
     }
 
     public double getRadius(){
-        return super.radius;
+        return radius;
     }
 
     public void eatNonzombie(){
-        if(super.radius < 0.2) {
-            super.radius *= 1.2;
+        if(radius < 0.2) {
+            radius *= 1.2;
         }
     }
  
+    @Override
     public void draw() {
         StdDraw.setPenColor(StdDraw.RED);
         StdDraw.filledCircle(super.getX(), super.getY(), super.radius);
     }
 
-//    @Override
-    public Entity update(Entity[] entities, double deltaTime) {
+    @Override
+    public Entity update(Entity[] entities) {
         Nonzombie e = this.findClosestNonzombie(entities);
         if(e != null){
-            this.moveToward(e, deltaTime);
-        	super.update(entities, deltaTime);
-            return this;
+            this.moveToward(e);
+        	this.boundsCheck();
         }
-        return null;
+        return this;
     }
 }

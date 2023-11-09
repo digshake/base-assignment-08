@@ -104,15 +104,10 @@ public class ZombieSimulator {
 	 * @param deltaTime the amount of time since the previous frame of the
 	 *                  simulation.
 	 */
-	public void update(double deltaTime) {
-		Entity[] newArr = new Entity[community.length];
-		int i = 0;
-		for(Entity e : this.community) {
-			if(e != null)
-				newArr[i] = e.update(community, deltaTime);
-			i++;
+	public void update() {
+		for(int i = 0; i < community.length; i++) {
+			community[i] = community[i].update(this.community);
 		}
-		this.community = newArr;
 	}
 
 	/**
@@ -134,14 +129,12 @@ public class ZombieSimulator {
 		
 		double prevTime = Timing.getCurrentTimeInSeconds();
 		while (zombieSimulator.getNonzombieCount() >= 0) {
-			double currTime = Timing.getCurrentTimeInSeconds();
-			double deltaTime = currTime - prevTime;
-			if (deltaTime > 0.0) {
-				zombieSimulator.update(deltaTime);
+
+				zombieSimulator.update();
 				zombieSimulator.draw();
-			}
-			StdDraw.pause(10);
-			prevTime = currTime;
+
+			StdDraw.pause(20);
+
 		}
 	}
 }
