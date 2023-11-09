@@ -6,9 +6,7 @@ import edu.princeton.cs.introcs.StdDraw;
 import support.cse131.NotYetImplementedException;
 
 public class Entity {
-	private static final double MOVE_DISTANCE = 0.01;
-	protected double x, y, radius;
-	private boolean isConsumed;
+	private int x, y, speed;
 
 	/**
 	 * @param isZombie the undead state of this Entity.
@@ -16,38 +14,66 @@ public class Entity {
 	 * @param x        the x-coordinate of this Entity's center.
 	 * @param y        the y-coordinate of this Entity's center.
 	 */
-	public Entity(double x, double y) {
-		this.x = x;
-		this.y = y;
-		this.radius = 0.008;
-		this.isConsumed = false;
+	public Entity(double x, double y, boolean isZombie, double speed) {
+		// TODO
+		throw new NotYetImplementedException();
 	}
+
 	/**
 	 * @return the center x-coordinate
 	 */
 	public double getX() {
-		return this.x;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
 	 * @return the center y-coordinate
 	 */
 	public double getY() {
-		return this.y;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
+	/**
+	 * 
+	 * @return the Entity's radius
+	 */
 	public double getRadius() {
-		return this.radius;
-	}
-	public boolean isAlive() {
-		return !this.isConsumed;
-	}
-	public void wasConsumed(){
-		this.isConsumed = true;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 	
+	
+    public void setRadius(double d) {
+    	//FIXME
+		throw new NotYetImplementedException();
+	}
+
+	/**
+	 * 
+	 * @return the status of the Entity
+	 */
+	public boolean isAlive() {
+		// FIXME
+		throw new NotYetImplementedException();
+	}
+
+	/**
+	 * Updates the Entity's consumed status after consumption
+	 */
+	public void wasConsumed(){
+		// FIXME
+		throw new NotYetImplementedException();
+	}
+
+	/**
+	 * 
+	 * @return if the Entity is a Zombie (this is a placeholder - it should never be called)
+	 */
 	public boolean isZombie() {
-		return false;
+		//FIXME
+		throw new NotYetImplementedException();
 	}
 
 
@@ -57,7 +83,8 @@ public class Entity {
 	 * @return distance between this Entity's center and the specified other point.
 	 */
 	public double distanceCenterToPoint(double xOther, double yOther) {
-		return Math.sqrt(Math.pow(this.x - xOther, 2) + Math.pow(this.y - yOther, 2));
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -77,7 +104,8 @@ public class Entity {
 	 *         Entity's edge.
 	 */
 	public double distanceEdgeToEdge(double xOther, double yOther, double radiusOther) {
-		return distanceCenterToPoint(xOther, yOther) - (this.getRadius() + radiusOther);
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -97,7 +125,8 @@ public class Entity {
 	 *         circle of the specified other Entity, false otherwise.
 	 */
 	public boolean isTouching(double xOther, double yOther, double radiusOther) {
-		return distanceEdgeToEdge(xOther, yOther, radiusOther) <= 0;
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -120,18 +149,18 @@ public class Entity {
 		double angle = Math.atan2(yVector, xVector);
 		double xAmount = amount * Math.cos(angle);
 		double yAmount = amount * Math.sin(angle);
-		
-			 this.x += xAmount;
-			 this.y += yAmount;
-		
+
+		this.x += xAmount;
+		this.y += yAmount;
+
 	}
- 
+
 	/**
 	 * @param other  the other Entity
 	 * @param amount the amount to move toward the other Entity.
 	 */
-	public void moveToward(Entity other) {
-		moveToward(other.getX(), other.getY(), MOVE_DISTANCE);
+	public void moveToward(Entity other, double amount) {
+		moveToward(other.getX(), other.getY(), speed);
 	}
 
 	/**
@@ -140,7 +169,8 @@ public class Entity {
 	 * @param amount the amount to move away from the point.
 	 */
 	public void moveAwayFrom(double xOther, double yOther) {
-		moveToward(xOther, yOther, -MOVE_DISTANCE);
+		// FIXME
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -164,7 +194,7 @@ public class Entity {
 			// NOTE:
 			// We almost always want to use the equals method when comparing Objects.
 			// In this case, we check if the two entities are the exact same instance.
-			if (this != other && other != null) {
+			if (this != other && other != null && other.isAlive()) {
 				if ((other.isZombie() && includeZombies) || (!other.isZombie() && includeNonzombies)) {
 					double dist = distanceEdgeToEdge(other);
 					if (dist < closestDist) {
@@ -178,15 +208,12 @@ public class Entity {
 	}
 
 	/**
-	 * @param entities this array of entities to search.
+	 * @param entities the array of entities to search.
 	 * @return the closest nonzombie to this Entity in entities (which is not this).
 	 */
 	public Nonzombie findClosestNonzombie(Entity[] entities) {
 		Entity e = findClosest(entities, false, true);
-		if(e != null) {
-			return (Nonzombie)e;
-		}
-		return null;
+		return (Nonzombie)e;
 	}
 
 	/**
@@ -208,29 +235,19 @@ public class Entity {
 	public Entity findClosestEntity(Entity[] entities) {
 		return findClosest(entities, true, true);
 	}
-	
+	/**
+	 * Placeholder method - this should never be called and it should be overridden!
+	 */
 	public void draw() {
-		StdDraw.setPenColor(Color.orange);
+		StdDraw.setPenColor(Color.PINK);
 		StdDraw.point(x, y);
 	}
-	
-	public Entity update(Entity[] e) {
+
+	/**
+	 * Placeholder method - this should never be called and it should be overridden!
+	 */
+	public Entity update(Entity[] entities) {
 		return this;
-	}
-	
-	public void boundsCheck() {
-		if(this.x > 1) {
-			this.x = 1;
-		}
-		if(this.x < 0) {
-			this.x = 0;
-		}
-		if(this.y > 1) {
-			this.y = 1;
-		}
-		if(this.y < 0) {
-			this.y = 0;
-		}
 	}
 
 }

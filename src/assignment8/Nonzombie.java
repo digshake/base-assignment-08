@@ -1,55 +1,61 @@
 package assignment8;
 
 import edu.princeton.cs.introcs.StdDraw;
+import support.cse131.NotYetImplementedException;
 
 public class Nonzombie extends Entity {
-    public Nonzombie(double x, double y) {
-        super(x, y);
-    }
- 
-    public void consume(){
-        super.wasConsumed();
-    }
- 
-    @Override
-    public void draw() {
-    	if(isAlive()) {
-    		StdDraw.setPenColor(StdDraw.BLACK);
-    	} else {
-    		StdDraw.setPenColor(StdDraw.PINK);
-    	}
-    	StdDraw.filledCircle(x, y, super.getRadius());
-    }
-    
-    public Zombie convert() {
-    	System.out.println("CONVERTING");
-    	return new Zombie(super.getX(), super.getY());
-    }
-    
-    @Override
-    public Entity update(Entity[] entities) {
-        Zombie e = findClosestZombie(entities);
-        if(e != null && this.isAlive()){
-            this.moveAwayFrom(e);
-            this.boundsCheck();
-            if(this.isTouching(e)) {
-            	System.out.println("TOUCHING");
-                if(Math.random() > 0.2){
-                    Zombie newGuy = this.convert();
-                    return newGuy;
-                }
-                else {
-                    this.consume();
-                    e.eatNonzombie();
-                }
-            }
-        }
-        return this;
-    }
-    
-    @Override
-    public boolean isZombie() {
-    	return false;
-    }
-    
+
+	public static final double NONZOMBIE_SPEED = 0.01;
+
+	/**
+	 * 
+	 * @param x coordinate
+	 * @param y coordinate
+	 */
+	public Nonzombie(double x, double y) {
+		// FIXME
+		throw new NotYetImplementedException();
+	}
+
+	/**
+	 * Change the consumed state of the Nonzombie to true
+	 */
+	public void consumed(){
+		// FIXME
+		throw new NotYetImplementedException();
+
+	}
+
+	/**
+	 * Draw a Nonzombie
+	 */
+	public void draw() {
+		// FIXME
+		throw new NotYetImplementedException();
+
+	}
+
+	/**
+	 * Create a Zombie object in place of the current Nonzombie 
+	 * @return the new Zombie object
+	 */
+	public Zombie convert() {
+		// FIXME
+		throw new NotYetImplementedException();
+
+	}
+
+	/**
+	 * Update the Nonzombie
+	 * @param entities the array of Entity objects in the simulation, consumed or not
+	 * @param deltaTime the time since the last frame
+	 * @return the new Entity object to take the place of the current one
+	 */
+	public Entity update(Entity[] entities) {
+		// FIXME
+		throw new NotYetImplementedException();
+
+	}
+
+
 }
