@@ -8,11 +8,21 @@ import support.cse131.NotYetImplementedException;
 public class Entity {
 	private int x, y, speed;
 
+	/*
+	 * Default constructor - should not be used
+	 */
+	public Entity() {
+		this.x = 0;
+		this.y = 0;
+		this.speed = 0;
+	}
+	
 	/**
-	 * @param isZombie the undead state of this Entity.
-	 *                 true if zombie, false otherwise.
 	 * @param x        the x-coordinate of this Entity's center.
 	 * @param y        the y-coordinate of this Entity's center.
+	 * @param isZombie the undead state of this Entity.
+	 *                 true if zombie, false otherwise.
+	 * @param speed	   the entities speed
 	 */
 	public Entity(double x, double y, boolean isZombie, double speed) {
 		// TODO
@@ -235,6 +245,14 @@ public class Entity {
 	public Entity findClosestEntity(Entity[] entities) {
 		return findClosest(entities, true, true);
 	}
+	
+	/**
+	 * If the entity has moved out of bounds, returns it inbounds
+	 */
+	public void checkBounds() {
+		//FIXME
+	}
+	
 	/**
 	 * Placeholder method - this should never be called and it should be overridden!
 	 */

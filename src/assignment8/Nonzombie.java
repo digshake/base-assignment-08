@@ -16,30 +16,20 @@ public class Nonzombie extends Entity {
 		// FIXME
 		throw new NotYetImplementedException();
 	}
-
-	/**
-	 * Change the consumed state of the Nonzombie to true
-	 */
-	public void consumed(){
-		// FIXME
-		throw new NotYetImplementedException();
-
-	}
-
-	/**
-	 * Draw a Nonzombie
-	 */
-	public void draw() {
-		// FIXME
-		throw new NotYetImplementedException();
-
-	}
-
+	
 	/**
 	 * Create a Zombie object in place of the current Nonzombie 
 	 * @return the new Zombie object
 	 */
 	public Zombie convert() {
+		// FIXME
+		throw new NotYetImplementedException();
+	}
+	
+	/**
+	 * Draw a Nonzombie
+	 */
+	public void draw() {
 		// FIXME
 		throw new NotYetImplementedException();
 
