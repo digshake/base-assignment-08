@@ -6,7 +6,7 @@ import edu.princeton.cs.introcs.StdDraw;
 import support.cse131.NotYetImplementedException;
 
 public class Entity {
-	private int x, y, speed;
+	private double x, y, speed;
 
 	/*
 	 * Default constructor - should not be used
