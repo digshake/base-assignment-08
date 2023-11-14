@@ -167,16 +167,14 @@ public class Entity {
 
 	/**
 	 * @param other  the other Entity
-	 * @param amount the amount to move toward the other Entity.
 	 */
-	public void moveToward(Entity other, double amount) {
+	public void moveToward(Entity other) {
 		moveToward(other.getX(), other.getY(), speed);
 	}
 
 	/**
 	 * @param xOther x-coordinate of the other point.
 	 * @param yOther y-coordinate of the other point.
-	 * @param amount the amount to move away from the point.
 	 */
 	public void moveAwayFrom(double xOther, double yOther) {
 		// FIXME
@@ -185,7 +183,6 @@ public class Entity {
 
 	/**
 	 * @param other  the other Entity
-	 * @param amount the amount to move away from the other Entity.
 	 */
 	public void moveAwayFrom(Entity other) {
 		moveAwayFrom(other.getX(), other.getY());
