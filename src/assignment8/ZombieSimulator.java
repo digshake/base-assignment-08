@@ -84,8 +84,6 @@ public class ZombieSimulator {
 	 * Note: some entities may be consumed and will not remain for future frames of
 	 * the simulation.
 	 * 
-	 * @param deltaTime the amount of time since the previous frame of the
-	 *                  simulation.
 	 */
 	public void update() {
 		// FIXME
@@ -109,7 +107,6 @@ public class ZombieSimulator {
 		ZombieSimulator zombieSimulator = new ZombieSimulator(in.nextInt());
 		zombieSimulator.readEntities(in);
 
-		double prevTime = Timing.getCurrentTimeInSeconds();
 		while (zombieSimulator.getNonzombieCount() >= 0) {
 
 			zombieSimulator.update();

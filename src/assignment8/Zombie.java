@@ -37,7 +37,6 @@ public class Zombie extends Entity {
 	/**
 	 * Update the Zombie
 	 * @param entities the array of Entity objects in the simulation, consumed or not
-	 * @param deltaTime the time since the last frame
 	 * @return the new Entity object to take the place of the current one
 	 */
 	public Entity update(Entity[] entities) {
